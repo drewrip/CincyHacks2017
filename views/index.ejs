@@ -1,8 +1,9 @@
 <html lang="en">
 <head>
+
 <!-- Theme Made By www.w3schools.com - No Copyright -->
-<title>Invenio -Home</title>
-<link rel="icon" href="favicon.png">
+<title>Invenio | Home</title>
+<link rel="icon" href="logo.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -13,14 +14,20 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 body {
-	font: 400 15px/1.8 Lato, sans-serif;
+	font: 400 15px/1.8 Roboto, sans-serif;
 	color: #777;
+    background-color: #FFFF;
 }
+    
+    h2 {
+        font-family: "Bitter", sans-serif;
+    }
 h3, h4 {
-	margin: 10px 0 30px 0;
-	letter-spacing: 10px;      
+	margin: 10px 0 30px 0;     
 	font-size: 20px;
-	color: #111;
+	color: #3D348B;
+    letter-spacing: 5px;
+    line-height: 150%;
 }
 .container {
 	padding: 80px 120px;
@@ -53,7 +60,7 @@ h3, h4 {
 	background: #2d2d30;
 	color: #bdbdbd;
 }
-.bg-1 h3 {color: #fff;}
+.bg-1 h3 {color: #6290C3;}
 .bg-1 p {font-style: italic;}
 .list-group-item:first-child {
 	border-top-right-radius: 0;
@@ -74,14 +81,14 @@ h3, h4 {
 }
 .btn {
 	padding: 10px 20px;
-	background-color: #333;
-	color: #f1f1f1;
+	background-color: #FFFF;
+	color: #3D348B;
 	border-radius: 0;
 	transition: .2s;
 }
 .btn:hover, .btn:focus {
 	border: 1px solid #333;
-	background-color: #fff;
+	background-color: #716BAA;
 	color: #000;
 }
 .modal-header, h4, .close {
@@ -96,18 +103,12 @@ h3, h4 {
 .nav-tabs li a {
 	color: #777;
 }
-#googleMap {
-	width: 100%;
-	height: 400px;
-	-webkit-filter: grayscale(100%);
-	filter: grayscale(100%);
-}  
 .navbar {
-	font-family: Montserrat, sans-serif;
+	font-family: Roboto, sans-serif;
 	margin-bottom: 0;
 	background-color: #2d2d30;
-	border: 0;
-	font-size: 11px !important;
+	border: 0; 
+	font-size: 16px !important;
 	letter-spacing: 4px;
 	opacity: 0.9;
 }
@@ -132,8 +133,12 @@ h3, h4 {
 	color: #000 !important;
 }
 .dropdown-menu li a:hover {
-	background-color: red !important;
+	background-color: white !important;
 }
+    p {
+        color: #333;
+        font-size:20px;
+    }
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -203,29 +208,40 @@ h3, h4 {
     color: white;
 }
 h1{
-	font-family: "Bitter", sans-serif;
+	font-family: "Cutive-Mono", monospace;
+    font-size: 100px;
+    color: #3D348B; 
 }
 textarea {
 	resize: none;
 }
+input[type=submit] {
+    padding:5px 15px,
+    background:#ccc;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    }
 </style>
 </head>
-<body id="home" data-spy="scroll" data-target=".navbar" data-offset="50">
+<body onload=MyFunction() id="home" data-spy="scroll" data-target=".navbar" data-offset="50" onresize="fract.fixsize();">
+
 
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
-		<div class="navbar-header">
+		<div style="height:115%" class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#home">Logo</a>
+			<a class="navbar-brand" href="#"><img style="max-width: 100%; max-height: 100%" src="logo.png"/></a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#about">About Invenio</a></li>
-				<li><a href="#blockchain">What is <i>Blockchain</i></a></li>
+				<li><a href="#blockchain">What is <i>Blockchain</i>?</a></li>
 				<li><a id="signButton">Sign In</a></li>
 			</ul>
 		</div>
@@ -235,9 +251,12 @@ textarea {
 <!-- Container (The about Section) -->
 <div id="about" class="container text-center">
 	<h1>I N V E N I O</h1>
-	<p><em><strong>Decentralize Science</strong></em></p>
+ 
+	<h3><em><strong>Latin: "I discover, I find"</strong></em></h3>
+
 	<p>Invenio is a collection of peer-reviewed scientific data in a decentralized database. Researchers can submit papers to be reviewed, rated, and used by their peers. To ensure quality posts and reviews, Invenio implements a reputation system determined by fellow scientists; the summative rating controls the influence of individual researches on Invenio. Overall, Invenio is a unique platform for scientists and researchers to expand their thinking and validate the work of their peers on a collaborative website.</p>
-	<br>
+    <br>
+    <h3><em><strong>"It's true that contemporary technology permits decentralization, it also permits centralization. It depends on how you use the technology." <br> <br> -Noam Chomsky</strong></em></h3>
 </div>
 
 <!-- Modal -->
