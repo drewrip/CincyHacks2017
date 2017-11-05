@@ -11,6 +11,7 @@ contract invenio{
         uint64 byIndex;
         string link;
         Review[] reviews;
+        string tag;
     }
     struct User{
         Paper[] papers;
@@ -32,7 +33,6 @@ contract invenio{
             return false;
         }
     }
-    
     function getUser(address getAddr) private returns(bool){
         for(uint64 i = 0; i <= allUsers.length; i++){
             if(allUsers[i].userId == getAddr){
@@ -70,12 +70,14 @@ contract invenio{
             return;
         }
     }
-    function uploadPaper(string newTitle, string newLink) public{
+    function uploadPaper(string newTitle, string newLink, string newTag, address toAddr) public{
         require(checkOwner(allUsers[currentUser].userId));
         Paper newPaper;
         newPaper.title = newTitle;
-        newPaper.title = newLink;
-        allUsers[currentUser].papers.push(newPaper);
+        newPaper.link = newLink;
+        newPaper.tag = newTag;
+        allUsers[getUserIndex(toAddr)].papers.push(newPaper);
+        calcCred(getUserIndex(toAddr));
     }
     function addReview(uint64 parentUser, uint64 postIndex, string reviewLink, uint64 newRating) public{
         Review newReview;
@@ -83,6 +85,7 @@ contract invenio{
         newReview.rating = newRating;
         newReview.byIndex = getUserIndex(msg.sender);
         allUsers[parentUser].papers[postIndex].reviews.push(newReview);
+        calcCred(parentUser);
     }
     function calcCred(uint64 userIndex) private{
         uint64 count;
