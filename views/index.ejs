@@ -209,7 +209,7 @@ h3, h4 {
 }
 h1{
 	font-family: "Cutive-Mono", monospace;
-    font-size: 100px;
+    font-size: 75px;
     color: #3D348B; 
 }
 textarea {
@@ -263,21 +263,23 @@ input[type=submit] {
 <div id="signModal" class="modal">
 
   <!-- Modal content -->
-<div class="modal-content">
-	<div class="modal-header">
-		<span class="close">&times;</span>
-		<h2>Sign In</h2>
-	</div>
-	<div class="modal-body">
-		<form method="post" action="/login">
+<form method="post" action="/dashboard">
+	<div class="modal-content">
+		<div class="modal-header">
+			<span class="close">&times;</span>
+			<h2>Sign In</h2>
+		</div>
+		<div class="modal-body">
 			<input type="text" value="First Name" name="fName" onfocus="if (this.value=='First Name') this.value='';"/>
+			<br>
 			<input type="text" value="Last Name"  name="lName" onfocus="if (this.value=='Last Name') this.value='';"/>
-		</form>
+			
+		</div>
+		<div class="modal-footer">
+			<input type="submit" value="Submit"/>
+		</div>
 	</div>
-	<div class="modal-footer">
-		<input type="submit" value="Submit"/>
-	</div>
-</div>
+</form>
 
 </div>
 <script>
