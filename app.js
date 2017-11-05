@@ -51,4 +51,4 @@ app.post("/dashboard", function (req, res) {
     console.log(newPerson.firstName+" "+newPerson.lastName);
 });
 
-app.listen(8080);
+app.listen(8000);
