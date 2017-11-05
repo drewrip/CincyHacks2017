@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Theme Made By www.w3schools.com - No Copyright -->
@@ -135,6 +134,74 @@ h3, h4 {
 .dropdown-menu li a:hover {
 	background-color: red !important;
 }
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #30304c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #30304c;
+    color: white;
+}
 h1{
 	font-family: "Bitter", sans-serif;
 }
@@ -158,8 +225,8 @@ textarea {
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#about">About Invenio</a></li>
-				<li><a href="#tour">What is <i>Blockchain</i></a></li>
-				<li><a href="#signIn">Sign In</a></li>
+				<li><a href="#blockchain">What is <i>Blockchain</i></a></li>
+				<li><a id="signButton">Sign In</a></li>
 			</ul>
 		</div>
 	</div>
@@ -171,36 +238,71 @@ textarea {
 	<p><em><strong>Decentralize Science</strong></em></p>
 	<p>Invenio is a collection of peer-reviewed scientific data in a decentralized database. Researchers can submit papers to be reviewed, rated, and used by their peers. To ensure quality posts and reviews, Invenio implements a reputation system determined by fellow scientists; the summative rating controls the influence of individual researches on Invenio. Overall, Invenio is a unique platform for scientists and researchers to expand their thinking and validate the work of their peers on a collaborative website.</p>
 	<br>
+</div>
 
+<!-- Modal -->
+<div id="signModal" class="modal">
+
+  <!-- Modal content -->
+<div class="modal-content">
+	<div class="modal-header">
+		<span class="close">&times;</span>
+		<h2>Sign In</h2>
+	</div>
+	<div class="modal-body">
+		<form method="post" action="/login">
+			<input type="text" value="First Name" name="fName" onfocus="if (this.value=='First Name') this.value='';"/>
+			<input type="text" value="Last Name"  name="lName" onfocus="if (this.value=='Last Name') this.value='';"/>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<input type="submit" value="Submit"/>
+	</div>
+</div>
+
+</div>
 <script>
 $(document).ready(function(){
-// Initialize Tooltip
-$('[data-toggle="tooltip"]').tooltip(); 
 
-// Add smooth scrolling to all links in navbar + footer link
-$(".navbar a, footer a[href='#home']").on('click', function(event) {
+	$('[data-toggle="tooltip"]').tooltip(); 
 
-// Make sure this.hash has a value before overriding default behavior
-if (this.hash !== "") {
+	$(".navbar a, footer a[href='#home']").on('click', function(event) {
 
-// Prevent default anchor click behavior
-event.preventDefault();
+		if (this.hash !== "") {
 
-// Store hash
-var hash = this.hash;
+			event.preventDefault();
 
-// Using jQuery's animate() method to add smooth page scroll
-// The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-$('html, body').animate({
-scrollTop: $(hash).offset().top
-}, 900, function(){
+			var hash = this.hash;
 
-// Add hash (#) to URL when done scrolling (default click behavior)
-window.location.hash = hash;
+			$('html, body').animate({
+					scrollTop: $(hash).offset().top
+			}, 900, function(){
+
+				window.location.hash = hash;
+			});
+		}
+	});
 });
-} // End if
-});
-})
+
+var modal = document.getElementById('signModal');
+
+var btn = document.getElementById("signButton");
+
+var span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 </script>
 
 </body>
