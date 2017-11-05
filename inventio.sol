@@ -1,17 +1,29 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.8;
 contract invenio{
     
+    struct Review{
+        string link;
+        uint64 rating;
+        uint64 byIndex;
+    }
+    struct Paper{
+        string title;
+        uint64 byIndex;
+        string link;
+        Review[] reviews;
+    }
     struct User{
-        string[] papers;
+        Paper[] papers;
         string[] reviewed ;
         string firstName;
         string lastName;
         address userId;
+        uint64 cred;
     }
+
     
     User[] private allUsers;
-    
-    User private currentUser;
+    uint64 private currentUser;
     function checkOwner(address checkAddr) returns(bool){
         if(checkAddr == msg.sender){
             return true;
@@ -24,11 +36,17 @@ contract invenio{
     function getUser(address getAddr) private returns(bool){
         for(uint64 i = 0; i <= allUsers.length; i++){
             if(allUsers[i].userId == getAddr){
-                currentUser = allUsers[i];
+                currentUser = i;
             }
         }
     }
-    
+    function getUserIndex(address getAddrIndex) private returns(uint64){
+        for(uint64 i = 0; i <= allUsers.length; i++){
+            if(allUsers[i].userId == getAddrIndex){
+                return i;
+            }
+        }
+    }
     function checkColl(address checkAddr) private returns(bool){
         for(uint64 i = 0; i <= allUsers.length; i++){
             if(allUsers[i].userId == checkAddr){
@@ -44,6 +62,7 @@ contract invenio{
             newUser.firstName = newFirstName;
             newUser.lastName = newLastName;
             newUser.userId = msg.sender;
+            newUser.cred = 5;
             allUsers.push(newUser);
         }
         else{
@@ -51,14 +70,30 @@ contract invenio{
             return;
         }
     }
-    function uploadPaper(address toAddress) public{
-        require(checkOwner(toAddress));
-        
+    function uploadPaper(string newTitle, string newLink) public{
+        require(checkOwner(allUsers[currentUser].userId));
+        Paper newPaper;
+        newPaper.title = newTitle;
+        newPaper.title = newLink;
+        allUsers[currentUser].papers.push(newPaper);
     }
-    event print(address out);
-    function checkAccounts() public{
-        for(uint64 i = 0; i <= allUsers.length; i++){
-            print(allUsers[i].userId);
+    function addReview(uint64 parentUser, uint64 postIndex, string reviewLink, uint64 newRating) public{
+        Review newReview;
+        newReview.link = reviewLink;
+        newReview.rating = newRating;
+        newReview.byIndex = getUserIndex(msg.sender);
+        allUsers[parentUser].papers[postIndex].reviews.push(newReview);
+    }
+    function calcCred(uint64 userIndex) private{
+        uint64 count;
+        uint64 newCred;
+        for(uint64 i = 0; i <= allUsers[userIndex].papers.length; i++){
+            for(uint64 n = 0; n <= allUsers[userIndex].papers[i].reviews.length; n++){
+
+                newCred += allUsers[userIndex].papers[i].reviews[n].rating * allUsers[allUsers[userIndex].papers[i].reviews[n].byIndex].cred;
+                count++;
+            }
         }
+        allUsers[currentUser].cred = newCred/count;
     }
 }
