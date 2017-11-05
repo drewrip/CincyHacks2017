@@ -1,10 +1,10 @@
 const express = require("express");
 const path = require("path");
 const solc = require("solc");
-const web3 = require("web3");
+const Web3 = require("web3");
 const ejs = require("ejs");
 const bodyParser = require('body-parser');
-
+const fs = require("fs");
 var web3 = new Web3(Web3.providers.HttpProvider("localhost:8545"));
 var account = web3.eth.accounts.create().address;
 console.log("Contract from  "+ account);
