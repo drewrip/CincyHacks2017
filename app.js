@@ -22,7 +22,7 @@ function person(first, last){
 }
 var dhruv = new person("Dhruv", "Weaver");
 
-app.post("/login", function (req, res) {
+app.post("/dashboard", function (req, res) {
 	var body = JSON.parse(body);
 	var newPerson = new person(req.body.firstName, req.body.lastName);
     console.log(newPerson.firstName+" "+newPerson.lastName);
