@@ -1,0 +1,22 @@
+{
+  "name": "invenio",
+  "version": "1.0.0",
+  "description": "Decentralized system for peer review",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drewrip/invenio.git"
+  },
+  "keywords": [
+    "academia"
+  ],
+  "author": "Drew Ripberger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drewrip/invenio/issues"
+  },
+  "homepage": "https://github.com/drewrip/invenio#readme"
+}
